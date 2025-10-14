@@ -1,0 +1,46 @@
+<!-- login page -->
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <mat-card class="w-full max-w-md p-8 shadow-xl">
+    <!-- header title -->
+    <mat-card-header class="justify-center mb-6">
+      <mat-card-title class="!text-3xl font-bold">Welcome Back</mat-card-title>
+      <mat-card-subtitle class="!text-base">Log in to manage your tasks</mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- content form -->
+    <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+            <!-- username -->
+            <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" placeholder="Enter your username">
+            @if(loginForm.get('username')?.hasError('required')) {
+                <mat-error>Username is required</mat-error>
+            }
+            </mat-form-field>
+
+            <!-- password -->
+            <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" placeholder="Enter your password">
+            @if(loginForm.get('password')?.hasError('required')) {
+                <mat-error>Password is required</mat-error>
+            }
+            </mat-form-field>
+            
+            @if(isLoading) {
+                <!-- loading state -->
+                <div class="flex justify-center">
+                    <mat-progress-spinner mode="indeterminate" [diameter]="40"></mat-progress-spinner>
+                </div>
+            } @else {
+                <!-- login button -->
+                <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid" class="py-6 text-lg">
+                    Log In
+                </button>
+            }
+        </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

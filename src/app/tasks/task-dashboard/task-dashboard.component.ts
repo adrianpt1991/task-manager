@@ -12,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule, TitleCasePipe } from '@angular/common';
+import { TaskMetricsComponent } from '../task-metrics/task-metrics.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-task-dashboard',
@@ -26,14 +28,17 @@ import { CommonModule, TitleCasePipe } from '@angular/common';
     MatInputModule,
     MatTableModule,
     TitleCasePipe,
-    CommonModule
+    CommonModule,
+    TaskMetricsComponent,
 ],
   templateUrl: './task-dashboard.component.html',
   encapsulation: ViewEncapsulation.None,
 })
 export class TaskDashboardComponent implements OnInit {
+  // services
   readonly store = inject(TaskStore);
   private dialog = inject(MatDialog);
+  private authService = inject(AuthService);
 
   displayedColumns: string[] = ['title', 'description', 'status', 'actions'];
 
@@ -72,5 +77,9 @@ export class TaskDashboardComponent implements OnInit {
     if (confirm(`Are you sure you want to delete "${task.title}"?`)) {
         this.store.deleteTask(task.id);
     }
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }
