@@ -33,7 +33,7 @@ export class TaskFormComponent {
     }
 
     const taskData = this.isEditMode
-      ? { ...this.data, ...this.taskForm.value } // Merge existing id
+      ? { ...this.data, ...this.taskForm.value }
       : this.taskForm.value;
 
     this.dialogRef.close(taskData);

@@ -1,9 +1,20 @@
+<!-- top bar -->
 <mat-toolbar class="shadow fixed">
-  <span>Tasks Dashboard</span>
-  <span class="flex-1"></span>
-  <button matIconButton (click)="logout()" >
-    <mat-icon>logout</mat-icon>
-  </button>
+    <!-- app name -->
+    <span>Tasks Dashboard</span>
+    <span class="flex-1"></span>
+    <!-- toogle theme -->
+    <button
+        mat-icon-button
+        [attr.aria-label]="'Toggle theme'"
+        (click)="theme.toggleTheme()"
+    >
+        <mat-icon>{{ theme.isDark() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+    </button>
+    <!-- logout -->
+    <button matIconButton (click)="logout()" >
+        <mat-icon>logout</mat-icon>
+    </button>
 </mat-toolbar>
 
 <div class="container mx-auto p-4 pt-20">

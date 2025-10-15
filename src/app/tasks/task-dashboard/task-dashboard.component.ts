@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { TaskMetricsComponent } from '../task-metrics/task-metrics.component';
 import { AuthService } from '../../auth/auth.service';
+import { ThemeService } from '../../core/theme.service';
 
 @Component({
   selector: 'app-task-dashboard',
@@ -39,6 +40,7 @@ export class TaskDashboardComponent implements OnInit {
   readonly store = inject(TaskStore);
   private dialog = inject(MatDialog);
   private authService = inject(AuthService);
+  readonly theme = inject(ThemeService);
 
   displayedColumns: string[] = ['title', 'description', 'status', 'actions'];
 
