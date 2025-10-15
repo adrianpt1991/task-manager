@@ -36,6 +36,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/task-manager/",
               "budgets": [
                 {
                   "type": "initial",
